@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 're'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.10.2'
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    // SPRING MVC (javax)
+    implementation 'org.springframework:spring-webmvc:5.3.39'
+
+    // SERVLET (Tomcat 9)
+    compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
+
+    // JSP
+    compileOnly 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
+
+    // JSTL
+    implementation 'javax.servlet:jstl:1.2'
+
+    // VALIDATION
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+    implementation 'org.hibernate.validator:hibernate-validator:6.2.5.Final'
+
+    // TEST
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+}
+
+test {
+    useJUnitPlatform()
+}
